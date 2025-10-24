@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You, Shrekina 🐱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffc8dd, #ffafcc, #bde0fe);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #ff6b95;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 0px #ffc8dd;
+        }
+        
+        .cat-container {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .cat {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ffb6c1"/><circle cx="35" cy="40" r="8" fill="white"/><circle cx="35" cy="40" r="4" fill="black"/><circle cx="65" cy="40" r="8" fill="white"/><circle cx="65" cy="40" r="4" fill="black"/><path d="M 40 60 Q 50 70 60 60" stroke="black" stroke-width="2" fill="none"/><path d="M 30 30 Q 25 15 15 20" stroke="black" stroke-width="2" fill="none"/><path d="M 70 30 Q 75 15 85 20" stroke="black" stroke-width="2" fill="none"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+        
+        .button-container {
+            margin: 30px 0;
+        }
+        
+        #messageButton {
+            background-color: #ff6b95;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 149, 0.4);
+        }
+        
+        #messageButton:hover {
+            background-color: #ff8fab;
+            transform: scale(1.05);
+        }
+        
+        #messageButton:active {
+            transform: scale(0.95);
+        }
+        
+        .message {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: #495057;
+            display: none;
+            border-left: 5px solid #ff6b95;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message p {
+            margin-bottom: 15px;
+        }
+        
+        .cat-stickers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .cat-sticker {
+            width: 80px;
+            height: 80px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .sticker1 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23a2d2ff"/><circle cx="35" cy="40" r="8" fill="white"/><circle cx="35" cy="40" r="4" fill="black"/><circle cx="65" cy="40" r="8" fill="white"/><circle cx="65" cy="40" r="4" fill="black"/><path d="M 40 60 Q 50 70 60 60" stroke="black" stroke-width="2" fill="none"/></svg>');
+            animation-delay: 0s;
+        }
+        
+        .sticker2 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ffafcc"/><circle cx="35" cy="40" r="8" fill="white"/><circle cx="35" cy="40" r="4" fill="black"/><circle cx="65" cy="40" r="8" fill="white"/><circle cx="65" cy="40" r="4" fill="black"/><path d="M 40 60 Q 50 65 60 60" stroke="black" stroke-width="2" fill="none"/></svg>');
+            animation-delay: 0.5s;
+        }
+        
+        .sticker3 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23cdb4db"/><circle cx="35" cy="40" r="8" fill="white"/><circle cx="35" cy="40" r="4" fill="black"/><circle cx="65" cy="40" r="8" fill="white"/><circle cx="65" cy="40" r="4" fill="black"/><path d="M 40 60 Q 50 75 60 60" stroke="black" stroke-width="2" fill="none"/></svg>');
+            animation-delay: 1s;
+        }
+        
+        .sticker4 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ffc8dd"/><circle cx="35" cy="40" r="8" fill="white"/><circle cx="35" cy="40" r="4" fill="black"/><circle cx="65" cy="40" r="8" fill="white"/><circle cx="65" cy="40" r="4" fill="black"/><path d="M 40 60 Q 50 68 60 60" stroke="black" stroke-width="2" fill="none"/></svg>');
+            animation-delay: 1.5s;
+        }
+        
+        .sticker5 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23bde0fe"/><circle cx="35" cy="40" r="8" fill="white"/><circle cx="35" cy="40" r="4" fill="black"/><circle cx="65" cy="40" r="8" fill="white"/><circle cx="65" cy="40" r="4" fill="black"/><path d="M 40 60 Q 50 72 60 60" stroke="black" stroke-width="2" fill="none"/></svg>');
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b95;
+            animation: heartFloat 5s linear forwards;
+            opacity: 0;
+        }
+        
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>For My Shrekina 🐱</h1>
+        
+        <div class="cat-container">
+            <div class="cat"></div>
+        </div>
+        
+        <div class="button-container">
+            <button id="messageButton">Press Me Kikinn</button>
+        </div>
+        
+        <div class="message" id="message">
+            <p>One thing I love most about you is that you never fail to cheer me up, imong mga horny nga kabuang, okay fine, atong mga chika pud abt ni nikol sd 😭 but most times, you message and listen to me.</p>
+            
+            <p>When I ignored everyone and from you, I still felt your love in the words you uttered and the things you did when you welcomed me back:)) You never made me feel as if I'm something to be fixed or patched up. You just let me be. I feel like I can exist and be enough with doing just so.</p>
+            
+            <p>Point is, you show up 🥹 for us and pls know that you don't have to worry about finding someone like that. Me and Mege will be that person for you 🫶</p>
+            
+            <p>ALSO diay one thing I learned about love with you is that it's polite. It's polite and it comes to find me. It knocks and waits for me to welcome it in my home.</p>
+            
+            <p>My shrekina thank you for not opening my door by force. Thank you for knocking. Thank you for waiting for me to open the door for you myself.</p>
+        </div>
+        
+        <div class="cat-stickers">
+            <div class="cat-sticker sticker1"></div>
+            <div class="cat-sticker sticker2"></div>
+            <div class="cat-sticker sticker3"></div>
+            <div class="cat-sticker sticker4"></div>
+            <div class="cat-sticker sticker5"></div>
+        </div>
+        
+        <div class="footer">
+            Made with love and cats 🐾
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.getElementById('messageButton');
+            const message = document.getElementById('message');
+            
+            button.addEventListener('click', function() {
+                // Show the message with animation
+                message.style.display = 'block';
+                message.style.opacity = '0';
+                message.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    message.style.transition = 'all 0.5s ease';
+                    message.style.opacity = '1';
+                    message.style.transform = 'translateY(0)';
+                }, 100);
+                
+                // Create floating hearts
+                for (let i = 0; i < 20; i++) {
+                    createHeart();
+                }
+                
+                // Change button text
+                button.textContent = "I Love You! 🐱";
+                button.disabled = true;
+                
+                // Add cat stickers animation
+                const stickers = document.querySelectorAll('.cat-sticker');
+                stickers.forEach(sticker => {
+                    sticker.style.animation = 'float 2s ease-in-out infinite';
+                });
+            });
+            
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
